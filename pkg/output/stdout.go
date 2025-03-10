@@ -446,8 +446,21 @@ func (s *Stdoutput) resultMultiline(res ffuf.Result) {
 }
 
 func (s *Stdoutput) resultNormal(res ffuf.Result) {
-	resnormal := fmt.Sprintf("%s%s%-23s [Status: %d, Size: %d, Words: %d, Lines: %d, Duration: %dms]%s", TERMINAL_CLEAR_LINE, s.colorize(res.StatusCode), s.prepareInputsOneLine(res), res.StatusCode, res.ContentLength, res.ContentWords, res.ContentLines, res.Duration.Milliseconds(), ANSI_CLEAR)
-	fmt.Println(resnormal)
+    // Prepare the input values (e.g., URL or other fuzzed inputs)
+    inputs := s.prepareInputsOneLine(res)
+
+    // Construct the output string with the URL moved to the end
+    resnormal := fmt.Sprintf("%s%s[Status: %d, Size: %d, Words: %d, Lines: %d, Duration: %dms] %s%s", 
+        TERMINAL_CLEAR_LINE, 
+        s.colorize(res.StatusCode), 
+        res.StatusCode, 
+        res.ContentLength, 
+        res.ContentWords, 
+        res.ContentLines, 
+        res.Duration.Milliseconds(), 
+        inputs, 
+        ANSI_CLEAR)
+    fmt.Println(resnormal)
 }
 
 func (s *Stdoutput) resultJson(res ffuf.Result) {
