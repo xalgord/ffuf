@@ -458,7 +458,7 @@ func (s *Stdoutput) resultNormal(res ffuf.Result) {
         res.ContentWords, 
         res.ContentLines, 
         res.Duration.Milliseconds(), 
-        inputs, 
+        res.Url, 
         ANSI_CLEAR)
     fmt.Println(resnormal)
 }
