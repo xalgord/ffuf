@@ -450,14 +450,11 @@ func (s *Stdoutput) resultNormal(res ffuf.Result) {
     inputs := s.prepareInputsOneLine(res)
 
     // Construct the output string with the URL moved to the end
-    resnormal := fmt.Sprintf("%s%s[Status: %d, Size: %d, Words: %d, Lines: %d, Duration: %dms] %s%s", 
+    resnormal := fmt.Sprintf("%s%s[Status: %d, Words: %d] %s%s", 
         TERMINAL_CLEAR_LINE, 
         s.colorize(res.StatusCode), 
         res.StatusCode, 
-        res.ContentLength, 
         res.ContentWords, 
-        res.ContentLines, 
-        res.Duration.Milliseconds(), 
         res.Url, 
         ANSI_CLEAR)
     fmt.Println(resnormal)
