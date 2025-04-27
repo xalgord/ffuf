@@ -447,7 +447,7 @@ func (s *Stdoutput) resultMultiline(res ffuf.Result) {
 
 func (s *Stdoutput) resultNormal(res ffuf.Result) {
     // Prepare the input values (e.g., URL or other fuzzed inputs)
-    inputs := s.prepareInputsOneLine(res)
+    // inputs := s.prepareInputsOneLine(res)
 
     // Construct the output string with the URL moved to the end
     resnormal := fmt.Sprintf("%s%s[Status: %d, Words: %d] %s%s", 
